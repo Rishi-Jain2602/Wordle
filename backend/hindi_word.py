@@ -1,3 +1,7 @@
+# I faced some problems locally while working with IndoWordNet that I couldn't resolve. 
+# As a result, this file was deployed differently on Render, in a separate directory.
+# API Endpoint: https://random-hindi-word.onrender.com/random_hindi_word/
+
 # from fastapi import FastAPI
 # import uvicorn
 # import random
