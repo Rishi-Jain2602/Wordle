@@ -11,4 +11,6 @@ def get_random_english_word(length=5):
 
 def get_random_hindi_word():
     response = requests.get("https://random-hindi-word.onrender.com/random_hindi_word/")
-    return response
+    if response.status_code == 200:
+        return response.json().get("random_hindi_word", "").strip()  
+    return None
