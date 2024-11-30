@@ -47,7 +47,7 @@ def guess_word(user_word: UserWord):
     if game_state["game_over"]:
         return {"message": "Game is over. Please start a new game."}
 
-    if len(guess) != 5:
+    if len(guess) != 5 and lang == "eng":
         return {"message": "Please guess a 5-letter word."}
 
     guess = guess.lower()
@@ -55,31 +55,35 @@ def guess_word(user_word: UserWord):
 
     if guess == game_state["target_word"]:
         game_state["game_over"] = True
-        return generate_feedback(guess, win=True)
+        return generate_feedback(guess,lang, win=True)
 
     if game_state["attempts"] >= game_state["max_attempts"]:
         game_state["game_over"] = True
-        return generate_feedback(guess, win=False)
+        return generate_feedback(guess,lang, win=False)
 
-    return generate_feedback(guess)
+    return generate_feedback(guess,lang)
 
 
-def generate_feedback(guess: str, win=False):
+def generate_feedback(guess: str,lang:str, win=False):
     feedback = {}
     target = list(game_state["target_word"])
     guess_letters = list(guess)
 
-    for i in range(5):
-        if guess_letters[i] == target[i]:  
-            feedback[guess_letters[i]] = "green" 
-        else:
-            feedback[guess_letters[i]] = "gray"
+    if lang == 'eng':
+        for i in range(5):
+            if guess_letters[i] == target[i]:  
+                feedback[guess_letters[i]] = "green" 
+            else:
+                feedback[guess_letters[i]] = "gray"
 
-    for i in range(5):
-        if feedback[guess_letters[i]] == "gray" and guess_letters[i] in target:
-            feedback[guess_letters[i]] = "yellow"   
+        for i in range(5):
+            if feedback[guess_letters[i]] == "gray" and guess_letters[i] in target:
+                feedback[guess_letters[i]] = "yellow"   
 
     similarity = compare_words(guess,game_state["target_word"])
+    
+    if win == False and lang == "hin":
+        return {"Similarity":similarity,"message": f"{game_state['max_attempts'] - game_state['attempts']} attempts remaining. {game_state['target_word']}"}
 
     if win:
         return {"feedback": feedback,"Similarity":similarity, "message": "Congratulations! You've won!", "attempts": game_state["attempts"]}
