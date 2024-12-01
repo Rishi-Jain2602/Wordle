@@ -1,7 +1,18 @@
 # Wordle - Word Guessing Game
 A bilingual word guessing game built using FastAPI and Streamlit, supporting both English and Hindi. The game provides feedback based on correct letter positions and similarity scores for Hindi words, utilizing WordNet, IndoWordNet, and IndicBERT for contextual search.
 ****
+## How to Play the Game
+- Choose your preferred language (English or Hindi).
+- Enter a 5-letter word in the selected language.
+- Click the Submit button, and the game will provide feedback:
+   - Similarity score (ranges from 0 to 1).
+   - Letters that are part of the target word will be highlighted in different colors:
+     1. **Green:** Correct letter in the correct position.
+     2. **Yellow:** Correct letter, but in the wrong position.
+     3. **Gray:** Incorrect letter.
+- You have a total of 5 attempts to guess the word correctly.
 
+****
 ## Installation
 
 1. Clone the Repository
@@ -45,6 +56,13 @@ uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 ```
 ****
 
+## Tools and Models Used
+- **FastAPI:** Backend framework for managing game logic and API requests.
+- **Streamlit:** Frontend framework for creating an interactive user interface.
+- **WordNet / IndoWordNet:** Used for selecting words in English and Hindi.
+- **IndicBERT:** Employed for calculating similarity scores for Hindi word guesses.
+
+*****
 ## Note
 1. Make sure you have Python 3.x installed
 2. It is recommended to use a virtual environment to avoid conflict with other projects.
