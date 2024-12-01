@@ -1,6 +1,5 @@
-# Sentiment-Analysis-on-Call-Transcripts
-This project evaluate each transcript of phone call, providing sentiment scores to gauge emotions and attitudes in customer interactions.
-
+# Wordle - Word Guessing Game
+A bilingual word guessing game built using FastAPI and Streamlit, supporting both English and Hindi. The game provides feedback based on correct letter positions and similarity scores for Hindi words, utilizing WordNet, IndoWordNet, and IndicBERT for contextual search.
 ****
 
 ## Installation
