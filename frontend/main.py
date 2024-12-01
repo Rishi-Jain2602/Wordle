@@ -1,7 +1,7 @@
 import streamlit as st
 import requests
 
-st.title("Word Guessing Game - English / Hindi")
+st.title("Wordle - English / Hindi")
 
 if "previous_guesses" not in st.session_state:
     st.session_state.previous_guesses = []
@@ -20,12 +20,12 @@ st.write("4. Yellow: Correct letter in the wrong position.")
 st.write("5. Gray: Incorrect letter.")
 
 if language_code == "eng":
-    guess = st.text_input("Enter your 5-letter word guess:")
+    guess = st.text_input("Enter your 5-letter English word guess:")
 else:
-    guess = st.text_input("Enter your word guess:")
+    guess = st.text_input("Enter your 5-letter Hindi word guess:")
 
 if st.button("Submit Guess"):
-    if len(guess) != 5 and language_code == "eng":
+    if len(list(guess)) != 5 and lang == "English":
         st.error("Please enter a 5-letter word.")
     else:
         response = requests.post(
@@ -36,7 +36,7 @@ if st.button("Submit Guess"):
         if "feedback" in feedback and "Similarity" in feedback:
             st.write("## Feedback:")
             feedback_html = "<div style='display: flex; gap: 10px;'>"
-            for letter, color in feedback["feedback"].items():
+            for letter, color in feedback["feedback"]:
                 if color == "green":
                     feedback_html += f"<span style='color: green; font-size: 24px;'>{letter}</span>"
                 elif color == "yellow":
@@ -66,7 +66,7 @@ if st.session_state.previous_guesses:
         prev_feedback_html += f"<span style='font-size: 24px; font-weight: bold;'>{guess}: </span>"
 
         if feedback_english:
-            for letter, color in feedback_english.items():
+            for letter, color in feedback_english:
                 if color == "green":
                     prev_feedback_html += f"<span style='color: green; font-size: 24px;'>{letter}</span>"
                 elif color == "yellow":
