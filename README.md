@@ -1,5 +1,12 @@
 # Wordle - Word Guessing Game
 A bilingual word guessing game built using FastAPI and Streamlit, supporting both English and Hindi. The game provides feedback based on correct letter positions and similarity scores for Hindi words, utilizing WordNet, IndoWordNet, and IndicBERT for contextual search.
+
+
+
+https://github.com/user-attachments/assets/0195380e-743a-4de7-957c-bed5374afc6c
+
+
+
 ****
 ## How to Play the Game
 - Choose your preferred language (English or Hindi).
