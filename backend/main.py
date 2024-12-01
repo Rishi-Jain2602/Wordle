@@ -4,7 +4,6 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from model import compare_words
 import uvicorn
-import os
 app = FastAPI()
 
 app.add_middleware(
@@ -46,9 +45,9 @@ def guess_word(user_word: UserWord):
         game_state = game_state_hindi
     
     if game_state["game_over"]:
-        return {"message": "Game is over. Please start a new game."}
+        return {"message": f"Game is over. Please start a new game. Word was {game_state['target_word']}"}
 
-    if len(guess) != 5 and lang == "eng":
+    if len(guess) != 5:
         return {"message": "Please guess a 5-letter word."}
 
     guess = guess.lower()
@@ -66,32 +65,28 @@ def guess_word(user_word: UserWord):
 
 
 def generate_feedback(guess: str,lang:str, win=False):
-    feedback = {}
+    feedback = []
     target = list(game_state["target_word"])
     guess_letters = list(guess)
 
-    if lang == 'eng':
-        for i in range(5):
-            if guess_letters[i] == target[i]:  
-                feedback[guess_letters[i]] = "green" 
-            else:
-                feedback[guess_letters[i]] = "gray"
+    for i in range(len(guess_letters)):
+        if guess_letters[i] == target[i]:  
+            feedback.append((guess_letters[i], "green")) 
+        else:
+            feedback.append((guess_letters[i], "gray"))
 
-        for i in range(5):
-            if feedback[guess_letters[i]] == "gray" and guess_letters[i] in target:
-                feedback[guess_letters[i]] = "yellow"   
+    for i in range(len(guess_letters)):
+        if feedback[i][1] == "gray" and guess_letters[i] in target:
+            feedback[i] = (guess_letters[i], "yellow")    
 
     similarity = compare_words(guess,game_state["target_word"])
     
-    if win == False and lang == "hin":
-        return {"Similarity":similarity,"message": f"{game_state['max_attempts'] - game_state['attempts']} attempts remaining. {game_state['target_word']}"}
-
     if win:
         return {"feedback": feedback,"Similarity":similarity, "message": "Congratulations! You've won!", "attempts": game_state["attempts"]}
     elif game_state["game_over"]:
         return {"feedback": feedback,"Similarity":similarity, "message": f"Game over! The word was {game_state['target_word']}.", "attempts": game_state["attempts"]}
     else:
-        return {"feedback": feedback,"Similarity":similarity, "message": f"{game_state['max_attempts'] - game_state['attempts']} attempts remaining. {game_state['target_word']}"}
+        return {"feedback": feedback,"Similarity":similarity, "message": f"{game_state['max_attempts'] - game_state['attempts']} attempts remaining."}
 
 class reset(BaseModel):
     lang:str
@@ -117,6 +112,5 @@ def reset_game(user_reset:reset):
     return {"message": "Game reset successfully. A new word has been chosen."}
 
 
-if __name__ == "__main__":
-    port = int(os.getenv("PORT", 8000))  
-    uvicorn.run(app, host="0.0.0.0", port=port)
+if __name__ == "__main__": 
+    uvicorn.run(app, host="0.0.0.0", port=8000)
