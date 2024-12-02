@@ -55,7 +55,7 @@ streamlit run app.py
 
 5. Run the Backend (Flask App)
 
-Open a new terminal, navigate to the api directory, and run the backend:
+Open a new terminal and run the backend:
 
 ```bash
 cd backend
