@@ -56,6 +56,9 @@ if st.button("Submit Guess"):
         else:
             st.write("No similarity score available.")
 
+        if "Hint" in feedback: 
+            st.write("Hint: " + feedback["Hint"])
+
         if feedback.get("message"):
             st.write(feedback["message"])
 

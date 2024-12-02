@@ -14,11 +14,13 @@ app.add_middleware(
     allow_headers=["*"],  
 )
 
+rand_english_word = get_random_english_word(5)
 game_state_english = {
     "max_attempts": 5,
     "attempts": 0,
     "game_over": False,
-    "target_word": get_random_english_word(5).lower() 
+    "target_word": rand_english_word[0].lower(),
+    "target_hint": rand_english_word[1].lower() 
 }
 
 game_state_hindi = {
@@ -65,6 +67,7 @@ def guess_word(user_word: UserWord):
 
 
 def generate_feedback(guess: str,lang:str, win=False):
+    global game_state
     feedback = []
     target = list(game_state["target_word"])
     guess_letters = list(guess)
@@ -82,11 +85,11 @@ def generate_feedback(guess: str,lang:str, win=False):
     similarity = compare_words(guess,game_state["target_word"])
     
     if win:
-        return {"feedback": feedback,"Similarity":similarity, "message": "Congratulations! You've won!", "attempts": game_state["attempts"]}
+        return {"feedback": feedback ,"Similarity":similarity, "message": "Congratulations! You've won!", "attempts": game_state["attempts"]}
     elif game_state["game_over"]:
         return {"feedback": feedback,"Similarity":similarity, "message": f"Game over! The word was {game_state['target_word']}.", "attempts": game_state["attempts"]}
     else:
-        return {"feedback": feedback,"Similarity":similarity, "message": f"{game_state['max_attempts'] - game_state['attempts']} attempts remaining."}
+        return {"feedback": feedback , "Hint" : game_state["target_hint"],"Similarity":similarity, "message": f"{game_state['max_attempts'] - game_state['attempts']} attempts remaining."}
 
 class reset(BaseModel):
     lang:str
