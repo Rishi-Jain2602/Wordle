@@ -1,2 +1,5 @@
 /venv
 /backend/__pycache__
+/backend/word2vec.model
+/backend/local_model
+/backend/local_tokenizer
