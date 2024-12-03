@@ -14,20 +14,22 @@ app.add_middleware(
     allow_headers=["*"],  
 )
 
-rand_english_word = get_random_english_word(5)
+rand_english_word = get_random_english_word("eagle")
 game_state_english = {
     "max_attempts": 5,
     "attempts": 0,
     "game_over": False,
     "target_word": rand_english_word[0].lower(),
-    "target_hint": rand_english_word[1].lower() 
+    "target_hint": rand_english_word[1].lower() + "\nOther Like: "+ rand_english_word[2][0]+" , "+rand_english_word[2][1]
 }
 
-game_state_hindi = {
+get_random_hindi= get_random_hindi_word()
+game_state = game_state_hindi = {
     "max_attempts": 5,
     "attempts": 0,
     "game_over": False,
-    "target_word": get_random_hindi_word() 
+    "target_word": get_random_hindi[0],
+    "target_hint":get_random_hindi[1] 
 }
 
 class UserWord(BaseModel):
@@ -36,7 +38,7 @@ class UserWord(BaseModel):
 
 @app.post("/wordle/guess_word")
 def guess_word(user_word: UserWord):
-    global game_state_english,game_state_hindi
+    global game_state_english, game_state_hindi
     global game_state
     guess = user_word.guess.lower()
     lang = user_word.lang
@@ -45,25 +47,23 @@ def guess_word(user_word: UserWord):
         game_state = game_state_english
     else:
         game_state = game_state_hindi
-    
+
     if game_state["game_over"]:
         return {"message": f"Game is over. Please start a new game. Word was {game_state['target_word']}"}
-
-    if len(guess) != 5:
-        return {"message": "Please guess a 5-letter word."}
 
     guess = guess.lower()
     game_state["attempts"] += 1
 
     if guess == game_state["target_word"]:
         game_state["game_over"] = True
-        return generate_feedback(guess,lang, win=True)
+        return generate_feedback(guess, lang, win=True)
 
     if game_state["attempts"] >= game_state["max_attempts"]:
         game_state["game_over"] = True
-        return generate_feedback(guess,lang, win=False)
+        return generate_feedback(guess, lang, win=False)
 
-    return generate_feedback(guess,lang)
+    return generate_feedback(guess, lang)
+
 
 
 def generate_feedback(guess: str,lang:str, win=False):
@@ -94,23 +94,28 @@ def generate_feedback(guess: str,lang:str, win=False):
 class reset(BaseModel):
     lang:str
 
-@app.get("/wordle/reset_game")
+@app.post("/wordle/reset_game")
 def reset_game(user_reset:reset):
     global game_state_english,game_state_hindi
+    global game_state
     lang = user_reset.lang
     if lang == "eng":
-        game_state_english = {
+        get_random_english = get_random_english_word("eagle")
+        game_state = game_state_english = {
             "max_attempts": 5,
             "attempts": 0,
             "game_over": False,
-            "target_word": get_random_english_word(5).lower()
+            "target_word": get_random_english[0].lower(),
+            "target_hint": get_random_english[1].lower() + "\nOther Like: "+rand_english_word[2][0]+" , "+rand_english_word[2][1]
         }
     else:
-        game_state_hindi = {
+        get_random_hindi = get_random_hindi_word()
+        game_state = game_state_hindi = {
             "max_attempts": 5,
             "attempts": 0,
             "game_over": False,
-            "target_word": get_random_hindi_word() 
+            "target_word": get_random_hindi[0],
+            "target_hint":get_random_hindi[1] 
         }
     return {"message": "Game reset successfully. A new word has been chosen."}
 
