@@ -1,6 +1,7 @@
 from transformers import AutoTokenizer, AutoModel
 import torch
-from word import description_word
+from word_gen.eng_word import description_word_eng
+from word_gen.hindi_word import description_word_hin
 from gensim.test.utils import common_texts
 from gensim.models import Word2Vec
 import gensim.downloader as api
@@ -45,14 +46,18 @@ def get_word_similarity(word1, word2):
     print(f"Error: {e}. One or both words not found in the model's vocabulary.")
     return None
 
-def compare_words(word1,word2):
-    des_word1 = description_word(word1)
-    des_word2 = description_word(word2)
+def compare_words(word1,word2,lang):
+    if(lang == "eng"):
+        des_word1 = description_word_eng(word1)
+        des_word2 = description_word_eng(word2)
+    elif (lang == "hin"):
+        des_word1 = description_word_hin(word1)
+        des_word2 = description_word_hin(word2)
+    
     if des_word1 and des_word2:
         word1_embedding = get_word_embedding(des_word1)
         word2_embedding = get_word_embedding(des_word2)
         similarity_score = cosine_similarity(word1_embedding, word2_embedding)
     else:
-        similarity_score = get_word_similarity(word1,word2)
-    
+        similarity_score = get_word_similarity(word1,word2)    
     return similarity_score.item() if similarity_score else 0.0
