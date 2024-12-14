@@ -3,20 +3,12 @@ A bilingual word guessing game built using FastAPI and Streamlit, supporting bot
 
 
 
-https://github.com/user-attachments/assets/0195380e-743a-4de7-957c-bed5374afc6c
-
-
-
 ****
 ## How to Play the Game
 - Choose your preferred language (English or Hindi).
-- Enter a 5-letter word in the selected language.
+- Enter a word in the selected language and category.
 - Click the Submit button, and the game will provide feedback:
    - Similarity score (ranges from 0 to 1).
-   - Letters that are part of the target word will be highlighted in different colors:
-     1. **Green:** Correct letter in the correct position.
-     2. **Yellow:** Correct letter, but in the wrong position.
-     3. **Gray:** Incorrect letter.
 - You have a total of 5 attempts to guess the word correctly.
 
 ****
