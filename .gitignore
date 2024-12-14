@@ -3,3 +3,5 @@
 /backend/word2vec.model
 /backend/local_model
 /backend/local_tokenizer
+backend/word_gen/__pycache__
+/Wordle.mp4
