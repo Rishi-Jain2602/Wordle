@@ -1,22 +1,19 @@
-from fastapi import FastAPI
-import uvicorn
 import random
 import pyiwn
 from pyiwn import Language
-from typing import Optional
-from fastapi import FastAPI, Query
-
-app = FastAPI()
-
+from categories.category import random_species
+from translator.trans import translate_lang
 iwn = pyiwn.IndoWordNet(lang=Language.HINDI)
 
 def get_random_hindi_word(category):
+    word = random_species(category)
+    word = translate_lang(word,"hindi")
     all_synsets = iwn.all_synsets()
     words = []
     similar_words = []
     for synset in all_synsets:
         for lemma in synset.lemmas():
-            if category.lower() in synset.gloss().lower(): #Check if category is present in gloss
+            if word.lower() in synset.gloss().lower(): #Check if category is present in gloss
               words.append(lemma.name())
               for similar_lemma in synset.lemmas():
                     similar_words.append(similar_lemma.name())

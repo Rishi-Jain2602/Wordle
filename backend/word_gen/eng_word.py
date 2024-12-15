@@ -1,7 +1,7 @@
 from nltk.corpus import wordnet as wn
 import random
 import nltk
-import requests
+from categories.category import random_species
 nltk.download('wordnet')
 
 def description_word_eng(word):
@@ -12,8 +12,9 @@ def description_word_eng(word):
         return None
 
 def get_random_english_word(category):
+    word = random_species(category)
     try:
-        synsets = wn.synsets(category)
+        synsets = wn.synsets(word)
         if synsets:
             hyponyms = []
             for synset in synsets:
@@ -30,4 +31,3 @@ def get_random_english_word(category):
     except Exception as e:
       print(f"An error occurred: {e}")
       return None
-
