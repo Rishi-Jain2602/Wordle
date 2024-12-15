@@ -1,7 +1,10 @@
 /venv
 /backend/__pycache__
-/backend/word2vec.model
-/backend/local_model
-/backend/local_tokenizer
+/backend/models/__pycache__
+/backend/models/word2vec.model
+/backend/models/local_model
+/backend/models/local_tokenizer
 backend/word_gen/__pycache__
 /Wordle.mp4
+backend/get_word/__pycache__
+backend/translator/__pycache__
