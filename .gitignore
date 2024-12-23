@@ -8,3 +8,4 @@ backend/word_gen/__pycache__
 /Wordle.mp4
 backend/get_word/__pycache__
 backend/translator/__pycache__
+backend/categories/__pycache__
