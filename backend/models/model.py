@@ -2,6 +2,7 @@ from transformers import AutoTokenizer, AutoModel
 import torch
 from word_gen.eng_word import description_word_eng
 from word_gen.hindi_word import description_word_hin
+from word_gen.wiki_desc import get_wikipedia_description
 from gensim.test.utils import common_texts
 from gensim.models import Word2Vec
 import gensim.downloader as api
@@ -65,6 +66,12 @@ def compare_words(word1,word2,desc,lang):
         desc = translate_lang(desc,"english")
         common_words = common_keywords(des_word1,desc)   
 
+    if desc is None or desc == "":
+        trans_eng = translate_lang(word1,"english")
+        des_word1 = get_wikipedia_description(trans_eng)
+        desc = translate_lang(desc,"english")
+        common_words = common_keywords(des_word1,desc)
+        
     if des_word1 and desc:
         word1_embedding = get_word_embedding(des_word1)
         word2_embedding = get_word_embedding(desc)
