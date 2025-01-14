@@ -9,3 +9,5 @@ backend/word_gen/__pycache__
 backend/get_word/__pycache__
 backend/translator/__pycache__
 backend/categories/__pycache__
+/frontend/node_modules
+/backend/.env
