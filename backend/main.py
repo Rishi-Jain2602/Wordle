@@ -4,6 +4,11 @@ from pydantic import BaseModel
 from models.model import compare_words
 from get_word.word import generate_word
 import uvicorn
+from dotenv import load_dotenv
+load_dotenv()
+import os
+PORT = os.environ['PORT'] or 8000
+
 app = FastAPI()
 
 app.add_middleware(
@@ -127,4 +132,4 @@ def reset_game(user_reset:reset):
     return {"message": "Game reset successfully. A new word has been chosen."}
 
 if __name__ == "__main__": 
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=PORT)
