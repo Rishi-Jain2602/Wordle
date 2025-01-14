@@ -7,7 +7,7 @@ import uvicorn
 from dotenv import load_dotenv
 load_dotenv()
 import os
-PORT = os.environ['PORT'] or 8000
+PORT = int(os.getenv('PORT', 8000))
 
 app = FastAPI()
 
