@@ -1,0 +1,128 @@
+/* Container Styling */
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Title Styling */
+  .title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #333;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Form Group Styling */
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-group label {
+    font-size: 1.2rem;
+    color: #333;
+    font-weight: 500;
+  }
+  
+  .form-group select, .form-group input {
+    padding: 10px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: border-color 0.3s ease;
+  }
+  
+  .form-group select:focus, .form-group input:focus {
+    border-color: #333;
+    outline: none;
+  }
+  
+  /* Button Styling */
+  .btn-primary {
+    background-color: #333;
+    border: none;
+    font-size: 1.2rem;
+    padding: 12px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-primary:hover {
+    background-color: #555;
+  }
+  
+  /* Feedback Section */
+  .feedback {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  }
+  
+  .feedback h4 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  
+  .feedback p {
+    font-size: 1.1rem;
+    margin: 5px 0;
+  }
+  
+  /* Previous Guesses Section */
+  .previous-guesses h4 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  
+  .previous-guesses .list-group-item {
+    background-color: #fff;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 1.1rem;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .title {
+      font-size: 2rem;
+    }
+  
+    .form-group select, .form-group input {
+      font-size: 1rem;
+    }
+  
+    .btn-primary {
+      font-size: 1rem;
+    }
+  
+    .feedback h4, .previous-guesses h4 {
+      font-size: 1.2rem;
+    }
+  
+    .feedback p, .list-group-item {
+      font-size: 1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .title {
+      font-size: 1.8rem;
+    }
+  
+    .btn-primary {
+      font-size: 0.9rem;
+      padding: 10px;
+    }
+  }
+  
