@@ -1,6 +1,5 @@
 from transformers import AutoTokenizer, AutoModel
 import torch
-# from word_gen.hindi_word import description_word_hin
 from word_gen.mistral_desc import description
 from translator.trans import translate_lang
 import os

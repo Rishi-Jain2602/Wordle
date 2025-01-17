@@ -49,7 +49,7 @@ def guess_word(user_word: UserWord):
         if len(game_state_word[2]) >= 2:  
             similar_word += "," + game_state_word[2][1]
         
-        if len(game_state_word) >= 4:  # Ensure the list has at least 4 elements
+        if len(game_state_word) >= 4:  
             target_hint = game_state_word[3]
         else:
             target_hint = "No hint available"
