@@ -18,6 +18,7 @@ export default function Instructions() {
         </h2>
         <h2 className="instruction-item">
           - Similarity score (ranges from 0 to 1).
+          - Common keywords between your guess and the target word.
         </h2>
         <h2 className="instruction-item">
           - You have a total of 5 attempts to guess the word correctly.
