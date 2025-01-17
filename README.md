@@ -1,14 +1,15 @@
 # Wordle - Word Guessing Game
-A bilingual word guessing game built using FastAPI and Streamlit, supporting both English and Hindi. The game provides feedback based on correct letter positions and similarity scores for Hindi words, utilizing WordNet, IndoWordNet, and IndicBERT for contextual search.
+A bilingual word guessing game built using **FastAPI and React.js**, supporting English, Hindi, and various other languages. The game evaluates guesses by providing similarity scores and common keywords based on the descriptions of the guessed word and the target word. It also offers hints for the target word, utilizing **WordNet and MistralAPI** for contextual search to enhance the guessing experience.
 
 
 
 ****
 ## How to Play the Game
-- Choose your preferred language (English or Hindi).
+- Choose your preferred language (English, Hindi or others).
 - Enter a word in the selected language and category.
 - Click the Submit button, and the game will provide feedback:
    - Similarity score (ranges from 0 to 1).
+   - Common keywords between your guess and the target word.
 - You have a total of 5 attempts to guess the word correctly.
 
 ****
@@ -30,22 +31,28 @@ source venv/bin/activate  # On macOS/Linux
 
 3. Install the Project dependencies
 
-Install the required dependencies listed in the requirements.txt file:
+- 3.1 Navigate to the **Backend** Directory and install Python dependencies:
 
 ```bash
+cd backend
 pip install -r requirements.txt
 ```
+- 3.2 Navigate to the **Frontend** Directory and install Node.js dependencies:
+```bash
+cd frontend
+npm install
+```
 
-4. Run the Streamlit App
+4. Run the React App
 
-Start the Streamlit app with the following command:
+Start the React app with the following command:
 
 ```bash
 cd frontend
-streamlit run app.py
+npm start
 ```
 
-5. Run the Backend (Flask App)
+5. Run the Backend (FastAPI App)
 
 Open a new terminal and run the backend:
 
@@ -57,8 +64,8 @@ uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 
 ## Tools and Models Used
 - **FastAPI:** Backend framework for managing game logic and API requests.
-- **Streamlit:** Frontend framework for creating an interactive user interface.
-- **WordNet / IndoWordNet:** Used for selecting words in English and Hindi.
-- **IndicBERT:** Employed for calculating similarity scores for Hindi word guesses.
-
+- **React.js:** Frontend framework for creating an interactive user interface.
+- **WordNet** Used for selecting words and providing lexical relationships.
+- **Google-bert:** Employed for calculating similarity scores between words.
+- **Mistral AI:** Used to retrieve descriptions of words
 
