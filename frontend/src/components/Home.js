@@ -10,7 +10,8 @@ export default function Home() {
   const [feedback, setFeedback] = useState(null);
   const [previousGuesses, setPreviousGuesses] = useState([]);
   const [showHint, setShowHint] = useState(false);
-
+  const [userName, setUserName] = useState('');
+  const [showNamePrompt, setShowNamePrompt] = useState(true);
 
   const languages = ["English", "Hindi", "Kannada", "Tamil", "Malayalam", "Telugu"];
   const categories = ["Animal", "Bird", "Flower", "Vehicle", "Fruit", "Vegetable"];
@@ -37,6 +38,23 @@ export default function Home() {
       debouncedResetGame.cancel();  
     };
   }, [language, category, debouncedResetGame]);
+
+  useEffect(() => {
+    const savedName = localStorage.getItem('userName');
+    if (savedName) {
+      setUserName(savedName);
+      setShowNamePrompt(false);
+    } else {
+      const name = prompt('Please enter your name:');
+      if (name) {
+        setUserName(name);
+        localStorage.setItem('userName', name); 
+        setShowNamePrompt(false);
+      }
+    }
+  }, []);
+  
+  
 
   const handleLanguageChange = (e) => {
     setLanguage(e.target.value);
@@ -73,6 +91,8 @@ export default function Home() {
     <>
       <div className="container my-5">
       <h1 className="text-center my-4 title">Wordle Word Guessing Game</h1>
+
+      {userName && <h2>Welcome, {userName}!</h2>}
 
         <div className="form-group">
         <label htmlFor="language-select">Select Language:</label>

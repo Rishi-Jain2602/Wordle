@@ -16,10 +16,7 @@ export default function Navbar() {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav ms-auto mb-2 mb-lg-0"> 
                             <li className="nav-item">
-                                <Link className="nav-link" to="/instructions">How to Play?</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link mx-3" to="/Score">Previous Score</Link>
+                                <Link className="nav-link mx-5" to="/instructions">How to Play?</Link>
                             </li>
                         </ul>
                     </div>
