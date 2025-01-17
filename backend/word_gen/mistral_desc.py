@@ -2,7 +2,7 @@ import requests
 from dotenv import load_dotenv
 load_dotenv()
 import os
-Hugging_API = os.environ['Huggingface_API_Token']
+Hugging_API = os.environ['HUGGINGFACE_API_TOKEN']
 
 API_URL = "https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.2"
 headers = {"Authorization": f"Bearer {Hugging_API}"}
