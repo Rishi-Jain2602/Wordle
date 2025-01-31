@@ -1,5 +1,5 @@
 # Wordle - Word Guessing Game
-A bilingual word guessing game built using **FastAPI and React.js**, supporting English, Hindi, and various other languages. The game evaluates guesses by providing similarity scores and common keywords based on the descriptions of the guessed word and the target word. It also offers hints for the target word, utilizing **WordNet and MistralAPI** for contextual search to enhance the guessing experience.
+A multilingual word guessing game built using **FastAPI and React.js**, supporting English, Hindi, and various other languages. The game evaluates guesses by providing similarity scores and common keywords based on the descriptions of the guessed word and the target word. It also offers hints for the target word, utilizing **WordNet and MistralAPI** for contextual search to enhance the guessing experience.
 
 
 
